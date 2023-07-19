@@ -15,6 +15,7 @@ import collections
 
 
 def Z_projection(R,d,x):
+# This function takes a point x in d dimensional space and finds the corresponding grid cell it belongs to. The output is a string of the co-ordinates of the grid cell.
     z_proj = np.empty((d,1));
     z_proj_str = None
     #mulc = R/(4*math.pow(d,1/d));
@@ -44,6 +45,7 @@ def Z_projection(R,d,x):
 
 
 def create_Grid_String(d,N,R,locations):
+# This function maps each point to a grid cell. The output is a dictionary with keys corresponding to the co-ordinates of the grid cell (stored as a string) and value being the index of the node.
     Z_Grid = {}
     num_points = max(locations.shape);
     for i in range(num_points):
@@ -56,6 +58,7 @@ def create_Grid_String(d,N,R,locations):
 
 
 def create_neighbors_Z_Grid(Z_Grid,dimensions):
+#This function outputs a dictionary where the keys are the co-ordinates of the grid cells and the values contain all the neighbouring grid cell co-ordinates (2d of them).
     Z_Grid_nghbs = {}
     for ks in Z_Grid.keys():
         Z_Grid_nghbs[ks] = []
@@ -70,6 +73,7 @@ def create_neighbors_Z_Grid(Z_Grid,dimensions):
     return Z_Grid_nghbs
     
 def create_two_dim_nghbs(z_key):
+# Diagonal neighbours of a Z-grid cell
     nbr_list = []
     z_key_vals_list = z_key.split()
     nbr_list.append(str(int(z_key_vals_list[0]) + 1) + " "+ str(int(z_key_vals_list[1]) + 1) + " ")
